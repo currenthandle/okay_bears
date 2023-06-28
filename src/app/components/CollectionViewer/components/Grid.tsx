@@ -8,7 +8,7 @@ import {
 } from 'react'
 import { AutoSizer, Grid, WindowScroller } from 'react-virtualized'
 
-import bears from '@/../public/bears.json'
+// import bears from '@/../public/bears.json'
 import { BearItem } from '@/app/types'
 import NFTCard from './NFTCard'
 import { useInfiniteQuery } from '@tanstack/react-query'
@@ -81,6 +81,11 @@ export default function MainGrid() {
     const item = items[itemIndex]
     if (!item) {
       return null
+    }
+    // fetch next page if we're at the end of the list
+    if (itemIndex === items.length - 1 && !isFetching) {
+      console.log('fetching next page')
+      fetchNextPage()
     }
     return (
       <div key={key} style={style} className='p-4'>
