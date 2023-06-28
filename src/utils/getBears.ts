@@ -6,7 +6,7 @@ type Response = {
 
 export default async function getBears(offset: number = 0) {
   const res = await fetch(
-    `https://api-mainnet.magiceden.io/idxv2/getListedNftsByCollectionSymbol?collectionSymbol=okay_bears&limit=20&offset=${offset}&nextCursor=zmgsJaQ2HYMtaoS7GFdk3a1rUwekHkfVpmfrHZo7r93`
+    `http://localhost:3000/bear?offset=${offset}&limit=20`
   )
 
   if (!res.ok) {
