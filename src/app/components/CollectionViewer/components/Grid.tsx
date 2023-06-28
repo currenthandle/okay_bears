@@ -64,13 +64,18 @@ export default function MainGrid() {
     }
   }, [data])
 
+  // consider ammending to accompidated filtered results in colum Num calc
   useEffect(() => {
     const handleResize = () => {
       const width = parentRef.current?.clientWidth
       if (width) {
         let newNumColumns = Math.floor(width / COLUMN_WIDTH)
         newNumColumns = newNumColumns > 0 ? newNumColumns : 1
+        // if (newNumColumns < filteredItems.length) {
+        //   setNumColumns(filteredItems.length)
+        // } else {
         setNumColumns(newNumColumns)
+        // }
       } else {
         setNumColumns(1)
       }
@@ -81,6 +86,7 @@ export default function MainGrid() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+  // }, [filteredItems.length])
 
   function cellRenderer({ columnIndex, key, rowIndex, style }: CellProps) {
     const itemIndex = getItemIndex(rowIndex, columnIndex)
