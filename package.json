@@ -19,7 +19,11 @@
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-virtualized": "^9.22.5",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.5"
+  },
+  "devDependencies": {
+    "@types/react-virtualized": "^9.21.22"
   }
 }
