@@ -13,6 +13,7 @@ import { BearItem } from '@/app/types'
 import NFTCard from './NFTCard'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import getBears from '@/utils/getBears'
+import { useSearch } from './Header'
 
 type CellProps = {
   columnIndex: number
@@ -22,14 +23,21 @@ type CellProps = {
 }
 
 export default function MainGrid() {
-  const [items, setItems] = useState<BearItem[]>([])
   const COLUMN_WIDTH = 300
 
   const parentRef = useRef<HTMLDivElement>(null)
-  const [numColumns, setNumColumns] = useState(3)
 
-  // write a function that take the numColumns, a rowIndex, and a columnIndex
-  // and returns the index of the item in the items array
+  const [numColumns, setNumColumns] = useState(3)
+  const [items, setItems] = useState<BearItem[]>([])
+  const search = useSearch((state) => state.search)
+  const filteredItems = items.filter((item) => {
+    return (
+      item.title.toLowerCase().includes(search.toLowerCase()) ||
+      item.price.toString().includes(search) ||
+      search === ''
+    )
+  })
+
   const getItemIndex = (rowIndex: number, columnIndex: number) => {
     return rowIndex * numColumns + columnIndex
   }
@@ -56,8 +64,6 @@ export default function MainGrid() {
     }
   }, [data])
 
-  console.log(data)
-
   useEffect(() => {
     const handleResize = () => {
       const width = parentRef.current?.clientWidth
@@ -78,12 +84,13 @@ export default function MainGrid() {
 
   function cellRenderer({ columnIndex, key, rowIndex, style }: CellProps) {
     const itemIndex = getItemIndex(rowIndex, columnIndex)
-    const item = items[itemIndex]
+    // const items = filteredItems
+    const item = filteredItems[itemIndex]
     if (!item) {
       return null
     }
     // fetch next page if we're at the end of the list
-    if (itemIndex === items.length - 1 && !isFetching) {
+    if (itemIndex === filteredItems.length - 1 && !isFetching) {
       console.log('fetching next page')
       fetchNextPage()
     }
@@ -107,7 +114,7 @@ export default function MainGrid() {
               <Grid
                 autoHeight
                 columnCount={numColumns}
-                rowCount={Math.ceil(items.length / numColumns)}
+                rowCount={Math.ceil(filteredItems.length / numColumns)}
                 columnWidth={width / numColumns}
                 rowHeight={width / numColumns}
                 width={width}
