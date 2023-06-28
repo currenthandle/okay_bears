@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.29.19",
     "@types/node": "20.3.2",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
@@ -24,6 +25,8 @@
     "typescript": "5.1.5"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^4.29.19",
+    "@types/react-query": "^1.2.9",
     "@types/react-virtualized": "^9.21.22"
   }
 }

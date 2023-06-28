@@ -11,6 +11,8 @@ import { AutoSizer, Grid, WindowScroller } from 'react-virtualized'
 import bears from '@/../public/bears.json'
 import { BearItem } from '@/app/types'
 import NFTCard from './NFTCard'
+import { useInfiniteQuery } from '@tanstack/react-query'
+import getBears from '@/utils/getBears'
 
 type CellProps = {
   columnIndex: number
@@ -20,7 +22,7 @@ type CellProps = {
 }
 
 export default function MainGrid() {
-  const [items, setItems] = useState<BearItem[]>(bears.results)
+  const [items, setItems] = useState<BearItem[]>([])
   const COLUMN_WIDTH = 300
 
   const parentRef = useRef<HTMLDivElement>(null)
@@ -31,6 +33,30 @@ export default function MainGrid() {
   const getItemIndex = (rowIndex: number, columnIndex: number) => {
     return rowIndex * numColumns + columnIndex
   }
+
+  const {
+    data,
+    isLoading,
+    isFetching,
+    error,
+    fetchNextPage,
+    // fetchPreviousPage,
+  } = useInfiniteQuery({
+    queryKey: ['bears'],
+    queryFn: ({ pageParam = 0 }) => getBears(pageParam),
+    getNextPageParam: (lastPage, pages) => {
+      return pages.length * 20
+    },
+  })
+
+  useEffect(() => {
+    if (data) {
+      const newItems = data.pages.flat()
+      setItems(newItems)
+    }
+  }, [data])
+
+  console.log(data)
 
   useEffect(() => {
     const handleResize = () => {

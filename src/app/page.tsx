@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import CollectionViewer from './components/CollectionViewer'
+import Provider from '@/utils/Provider'
 
 export default function Home() {
   return (
