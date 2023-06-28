@@ -34,5 +34,7 @@ export default async function getBears(offset: number = 0) {
 
   const preparedBears: BearItem[] = bearsResponse.results.map(handleMapping)
 
+  console.log('preparedBears', preparedBears)
+
   return preparedBears
 }
