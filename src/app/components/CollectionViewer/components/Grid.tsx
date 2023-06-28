@@ -1,4 +1,3 @@
-// 'use client'
 import {
   CSSProperties,
   useEffect,
@@ -8,9 +7,7 @@ import {
 } from 'react'
 import { AutoSizer, Grid, WindowScroller } from 'react-virtualized'
 
-// import bears from '@/../public/bears.json'
 import { BearItem } from '@/app/types'
-// import NFTCard from './NFTCard'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import getBears from '@/utils/getBears'
 import { useSearch } from './Header'
