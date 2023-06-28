@@ -45,15 +45,10 @@ export default function MainGrid() {
     }
 
     handleResize()
-    // Add a timeout to allow initial paint to finish before reading clientWidth
-    // setTimeout(handleResize, 500)
-    // setTimeout(handleResize, 1500)
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-
-  console.log('numColumns', numColumns)
 
   function cellRenderer({ columnIndex, key, rowIndex, style }: CellProps) {
     const itemIndex = getItemIndex(rowIndex, columnIndex)
@@ -82,7 +77,6 @@ export default function MainGrid() {
                 autoHeight
                 columnCount={numColumns}
                 rowCount={Math.ceil(items.length / numColumns)}
-                // rowCount={1000}
                 columnWidth={width / numColumns}
                 rowHeight={width / numColumns}
                 width={width}
