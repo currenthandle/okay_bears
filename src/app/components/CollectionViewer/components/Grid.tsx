@@ -62,7 +62,7 @@ export default function MainGrid() {
       return null
     }
     return (
-      <div key={key} style={style} className=''>
+      <div key={key} style={style} className='p-4'>
         <NFTCard
           id={item?.id}
           img={item?.img}
