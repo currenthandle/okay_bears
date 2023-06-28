@@ -30,7 +30,7 @@ export default async function getBears(offset: number = 0) {
     img: string
   }) => ({
     id,
-    title,
+    title: title.replace('Okay Bear ', ''),
     price,
     img,
   })
