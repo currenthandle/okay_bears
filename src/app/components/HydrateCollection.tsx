@@ -1,4 +1,6 @@
 import { dehydrate, Hydrate } from '@tanstack/react-query'
+// import { Hydrate } from '@tanstack/react-query'
+// import { dehydrate } from '@tanstack/query-core'
 import getQueryClient from '@/utils/getQueryClient'
 import getBears from '@/utils/getBears'
 import CollectionViewer from './CollectionViewer'
@@ -9,8 +11,8 @@ export default async function HydratedPosts() {
   const dehydratedState = dehydrate(queryClient)
 
   return (
-    // <Hydrate state={dehydratedState}>
-    <CollectionViewer />
-    // </Hydrate>
+    <Hydrate state={dehydratedState}>
+      <CollectionViewer />
+    </Hydrate>
   )
 }
