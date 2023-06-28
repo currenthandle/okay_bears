@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 import {
   CSSProperties,
   useEffect,
@@ -50,12 +50,14 @@ export default function MainGrid() {
     fetchNextPage,
     // fetchPreviousPage,
   } = useInfiniteQuery({
-    queryKey: ['bears'],
+    queryKey: ['hydrate-bears'],
     queryFn: ({ pageParam = 0 }) => getBears(pageParam),
     getNextPageParam: (lastPage, pages) => {
       return pages.length * 20
     },
   })
+
+  console.log('isLoading', isLoading)
 
   useEffect(() => {
     if (data) {

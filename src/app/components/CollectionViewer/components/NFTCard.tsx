@@ -36,9 +36,10 @@ export default function NFTCard({ id, img, price, title }: NFTCardProps) {
             alt={title}
             fill={true}
             style={{ objectFit: 'cover' }}
-            sizes='100vw'
+            sizes='60vw'
             onLoad={handleImageLoad}
-            loading='eager'
+            // loading='eager'
+            priority={true}
           />
         </div>
       </div>
