@@ -43,20 +43,14 @@ export default function MainGrid() {
     return rowIndex * numColumns + columnIndex
   }
 
-  const {
-    data,
-    isLoading,
-    isFetching,
-    error,
-    fetchNextPage,
-    // fetchPreviousPage,
-  } = useInfiniteQuery({
-    queryKey: ['hydrate-bears'],
-    queryFn: ({ pageParam = 0 }) => getBears(pageParam),
-    getNextPageParam: (lastPage, pages) => {
-      return pages.length * 20
-    },
-  })
+  const { data, isLoading, isFetching, error, fetchNextPage } =
+    useInfiniteQuery({
+      queryKey: ['hydrate-bears'],
+      queryFn: ({ pageParam = 0 }) => getBears(pageParam),
+      getNextPageParam: (lastPage, pages) => {
+        return pages.length * 20
+      },
+    })
 
   useEffect(() => {
     if (data) {
@@ -65,18 +59,14 @@ export default function MainGrid() {
     }
   }, [data])
 
-  // consider ammending to accompidated filtered results in colum Num calc
   useEffect(() => {
     const handleResize = () => {
       const width = parentRef.current?.clientWidth
       if (width) {
         let newNumColumns = Math.floor(width / COLUMN_WIDTH)
         newNumColumns = newNumColumns > 0 ? newNumColumns : 1
-        // if (newNumColumns < filteredItems.length) {
-        //   setNumColumns(filteredItems.length)
-        // } else {
+
         setNumColumns(newNumColumns)
-        // }
       } else {
         setNumColumns(1)
       }
@@ -87,11 +77,9 @@ export default function MainGrid() {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
-  // }, [filteredItems.length])
 
   function cellRenderer({ columnIndex, key, rowIndex, style }: CellProps) {
     const itemIndex = getItemIndex(rowIndex, columnIndex)
-    // const items = filteredItems
     const item = filteredItems[itemIndex]
     if (!item) {
       return null
@@ -129,9 +117,7 @@ export default function MainGrid() {
                 onScroll={onChildScroll}
                 scrollTop={scrollTop}
                 cellRenderer={cellRenderer}
-              >
-                {console.log('width / numColumns', width / numColumns)}
-              </Grid>
+              ></Grid>
             )}
           </AutoSizer>
         )}
