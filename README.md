@@ -18,7 +18,7 @@ git clone git@github.com:currenthandle/okay_bears.git
 2. cd into the project directory
 
 ```bash
-cd okay-bears
+cd okay_bears
 ```
 
 3. Install dependencies
