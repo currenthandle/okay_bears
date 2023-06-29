@@ -4,7 +4,7 @@ import Header from './components/Header'
 
 export default function CollectionViewer() {
   return (
-    <div className='w-8/12 flex flex-col items-center'>
+    <div className='w-8/12 flex flex-col items-center bg-main'>
       <Header />
       <MainGrid />
     </div>

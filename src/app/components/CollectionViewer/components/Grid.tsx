@@ -58,8 +58,6 @@ export default function MainGrid() {
     },
   })
 
-  console.log('isLoading', isLoading)
-
   useEffect(() => {
     if (data) {
       const newItems = data.pages.flat()
@@ -100,7 +98,6 @@ export default function MainGrid() {
     }
     // fetch next page if we're at the end of the list
     if (itemIndex === filteredItems.length - 1 && !isFetching) {
-      console.log('fetching next page')
       fetchNextPage()
     }
     return (

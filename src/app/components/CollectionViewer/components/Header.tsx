@@ -1,3 +1,5 @@
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { create } from 'zustand'
 
 type SearchState = {
@@ -19,8 +21,13 @@ export default function Header() {
     <div>
       <input
         type='text'
-        className='rounded-xl px-4 py-2'
+        className='outline-none rounded-full px-4 py-2 bg-search text-search-text pr-[32px]'
         onChange={handleChange}
+      />
+      <FontAwesomeIcon
+        color='#544563'
+        icon={faMagnifyingGlass}
+        className='-translate-x-[27px]'
       />
     </div>
   )
