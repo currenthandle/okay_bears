@@ -13,6 +13,7 @@ module.exports = {
         main: '#07050a',
       },
       backgroundImage: {
+        'loading-bear': "url('/images/generic-bear.png')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',

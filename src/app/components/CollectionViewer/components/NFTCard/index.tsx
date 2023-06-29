@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import SolanaIcon from './components/SolanaIcon'
 import { useState } from 'react'
+import { ScaleLoader } from 'react-spinners'
 
 type NFTCardProps = {
   id: string
@@ -17,16 +18,29 @@ export default function NFTCard({ id, img, price, title }: NFTCardProps) {
   }
 
   return (
-    <div className='m-8 bg-details rounded-xl border-[1px] border-card-border'>
+    <div className='bg-details rounded-xl border-[1px] border-card-border'>
       <div className='aspect-square relative'>
-        <Image
-          className='rounded-xl'
-          src={img}
-          alt={title}
-          fill
-          priority
-          onLoad={handleImageLoad}
-        />
+        <div
+          className={`transition-opacity duration-500 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          } absolute inset-0`}
+        >
+          <Image
+            className='rounded-xl'
+            src={img}
+            alt={title}
+            fill
+            priority
+            onLoad={handleImageLoad}
+          />
+        </div>
+        <div
+          className={`transition-opacity duration-500 ${
+            imageLoaded ? 'opacity-0' : 'opacity-100'
+          } w-full h-full bg-loading-bear bg-cover  rounded-xl flex flex-col justify-center`}
+        >
+          <ScaleLoader className='m-auto' color='gray' />
+        </div>
       </div>
 
       <Details title={title} price={price} />
@@ -36,10 +50,10 @@ export default function NFTCard({ id, img, price, title }: NFTCardProps) {
 
 function Details({ title, price }: { title: string; price: number }) {
   return (
-    <div className='z-10 h-10 flex justify-between items-center text-white p-4 py-8'>
+    <div className='z-10 flex justify-between items-center text-white p-4 py-6'>
       <div className='flex-grow'>{title}</div>
       <div className='flex justify-between items-center'>
-        <div className='w-4 h-4'>
+        <div className='w-4 h-4 mr-1 '>
           <SolanaIcon />
         </div>
         <div className='pl-[2px]'>{price}</div>

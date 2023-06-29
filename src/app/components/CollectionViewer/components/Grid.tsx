@@ -23,7 +23,7 @@ type CellProps = {
   style: CSSProperties
 }
 const COLUMN_WIDTH = 300
-export const DETAILS_HEIGHT = 64
+export const DETAILS_HEIGHT = 24 * 3
 
 export default function MainGrid() {
   const parentRef = useRef<HTMLDivElement>(null)
@@ -103,9 +103,8 @@ export default function MainGrid() {
       console.log('fetching next page')
       fetchNextPage()
     }
-    console.log('style', style)
     return (
-      <div key={key} style={style}>
+      <div key={key} style={style} className='p-4'>
         <NFTCard
           id={item?.id}
           img={item?.img}
