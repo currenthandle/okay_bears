@@ -10,10 +10,11 @@ import { AutoSizer, Grid, WindowScroller } from 'react-virtualized'
 
 // import bears from '@/../public/bears.json'
 import { BearItem } from '@/app/types'
-import NFTCard from './NFTCard'
+// import NFTCard from './NFTCard'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import getBears from '@/utils/getBears'
 import { useSearch } from './Header'
+import NFTCard from './NFTCard'
 
 type CellProps = {
   columnIndex: number
@@ -21,10 +22,10 @@ type CellProps = {
   rowIndex: number
   style: CSSProperties
 }
+const COLUMN_WIDTH = 300
+export const DETAILS_HEIGHT = 64
 
 export default function MainGrid() {
-  const COLUMN_WIDTH = 300
-
   const parentRef = useRef<HTMLDivElement>(null)
 
   const [numColumns, setNumColumns] = useState(3)
@@ -102,8 +103,9 @@ export default function MainGrid() {
       console.log('fetching next page')
       fetchNextPage()
     }
+    console.log('style', style)
     return (
-      <div key={key} style={style} className='p-4'>
+      <div key={key} style={style}>
         <NFTCard
           id={item?.id}
           img={item?.img}
@@ -124,14 +126,16 @@ export default function MainGrid() {
                 columnCount={numColumns}
                 rowCount={Math.ceil(filteredItems.length / numColumns)}
                 columnWidth={width / numColumns}
-                rowHeight={width / numColumns}
+                rowHeight={DETAILS_HEIGHT + width / numColumns}
                 width={width}
                 height={height}
                 isScrolling={isScrolling}
                 onScroll={onChildScroll}
                 scrollTop={scrollTop}
                 cellRenderer={cellRenderer}
-              />
+              >
+                {console.log('width / numColumns', width / numColumns)}
+              </Grid>
             )}
           </AutoSizer>
         )}

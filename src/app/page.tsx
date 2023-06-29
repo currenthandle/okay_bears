@@ -4,7 +4,7 @@ import Provider from '@/utils/Provider'
 
 export default function Home() {
   return (
-    <main className='flex justify-center min-h-screen min-w-screen bg-red-300'>
+    <main className='flex justify-center min-h-screen min-w-screen bg-main'>
       <CollectionViewer />
     </main>
   )
