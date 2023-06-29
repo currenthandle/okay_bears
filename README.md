@@ -12,7 +12,7 @@ This app displays a grid of NFT from the Okay Bears collection on Solana. Checko
 1. Clone the repository
 
 ```bash
-git clone git@github.com:currenthandle/okay-bears.git
+git clone git@github.com:currenthandle/okay_bears.git
 ```
 
 2. cd into the project directory
