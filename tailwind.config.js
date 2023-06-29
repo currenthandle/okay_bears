@@ -11,6 +11,8 @@ module.exports = {
         details: '#120c18',
         'card-border': '#332840',
         main: '#07050a',
+        search: '#24192f',
+        'search-text': '#808080',
       },
       backgroundImage: {
         'loading-bear': "url('/images/generic-bear.png')",
