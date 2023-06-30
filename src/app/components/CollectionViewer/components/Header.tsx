@@ -21,7 +21,7 @@ export default function Header() {
     <div className='pt-12 pb-4'>
       <input
         type='text'
-        placeholder='Search item'
+        placeholder='Search items'
         className='outline-none rounded-full px-4 py-2 bg-search text-search-text pr-[32px]'
         onChange={handleChange}
       />
